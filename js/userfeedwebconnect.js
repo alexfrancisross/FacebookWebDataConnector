@@ -112,11 +112,29 @@ function Logout() {
                 if (data[ii].likes) {
                     totalLikes = data[ii].likes.summary.total_count;
                 }
+				
+			    //get created_time
+                var created_time;
+                if (data[ii].created_time) {
+                    created_time = new Date(data[ii].created_time * 1000);
+                }
+				else {
+					created_time = new Date(0);
+				}
+				
+		        //get updated_time
+                var updated_time;
+                if (data[ii].updated_time) {
+                    updated_time = new Date(data[ii].updated_time * 1000);
+                }
+				else {
+					updated_time = new Date(0);
+				}
 
                 var entry = {
                     'message': data[ii].message,
                     'caption': data[ii].caption,
-                    'created_time': new Date(data[ii].created_time * 1000),
+                    'created_time': created_time,
                     'description': data[ii].description,
                     'icon': data[ii].icon,
                     'post_id': data[ii].id,
@@ -129,7 +147,7 @@ function Logout() {
                     'status_type': data[ii].status_type,
                     'subscribed': data[ii].subscribed,
                     'type': data[ii].type,
-                    'updated_time': new Date(data[ii].updated_time * 1000),
+                    'updated_time': updated_time,
                     'application_name': ifexists(data[ii], 'application.name'),
                     'application_id': ifexists(data[ii], 'application.id'),
                     'from_category': ifexists(data[ii], 'from.category'),
