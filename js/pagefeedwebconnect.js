@@ -1,7 +1,7 @@
 
-        var APP_ID = '<YOUR APP ID>'; //Facebook APP ID
-        var LIMIT = 250; //Number of records to bring back at any time
-        var BASEURL = '<YOUR SERVER NAME>/facebooksearch/' //base url of virtual directory
+        var APP_ID = '1445370055764391'; //Facebook APP ID
+        var LIMIT = 100; //Number of records to bring back at any time
+        var BASEURL = 'http://files.tableaujunkie.com/facebooksearch/' //base url of virtual directory
 
         window.fbAsyncInit = function() {
             FB.init({
@@ -107,7 +107,7 @@
 					return;
 			}
 
-            var strPage = '/?ids=' + page_ids.join(','); //get page information for all selected pages
+            var strPage = '/?ids=' + page_ids.join(',') + "&fields=country_page_likes,talking_about_count,new_like_count,link,name"; //get page information for all selected pages
             FB.api(strPage, function(page_response) {
  
                 //pageInfo contains page information and access token to access page data 
@@ -155,9 +155,9 @@
             var myConnector = tableau.makeConnector();
 
             myConnector.getColumnHeaders = function() {
-                var fieldNames = ['page_name', 'page_likes', 'Page New Likes', 'Page Talking About', 'page_id', 'page_link', 'message', 'caption', 'created_time', 'description', 'icon', 'post_id', 'is_expired', 'is_hidden', 'link', 'name', 'picture', 'source', 'status_type', 'subscribed', 'type', 'updated_time', 'application_name', 'application_id', 'from_category', 'from_id', 'from_name', 'Post Shares', 'Post Likes', 'Post Comments (Top Level)'];
+                var fieldNames = ['page_name', 'page_likes', 'Page New Likes', 'Page Talking About', 'page_id', 'page_link', 'message', 'caption', 'created_time', 'description', 'icon', 'post_id', 'is_expired', 'is_hidden', 'link', 'name', 'picture', 'source', 'status_type', 'subscribed', 'type', 'updated_time', 'application_name', 'application_id', 'from_id', 'from_name', 'Post Shares', 'Post Likes', 'Post Comments (Top Level)'];
 
-                var fieldTypes = ['string', 'float', 'float', 'float', 'float', 'string', 'string', 'string', 'datetime', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'bool', 'string', 'datetime', 'string', 'float', 'string', 'float', 'string', 'float', 'float', 'float'];
+                var fieldTypes = ['string', 'float', 'float', 'float', 'float', 'string', 'string', 'string', 'datetime', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'datetime', 'string', 'float', 'float', 'string', 'float', 'float', 'float'];
 
                 tableau.headersCallback(fieldNames, fieldTypes); // tell tableau about the fields and their types
             };
@@ -263,7 +263,7 @@
 
                         var entry = {
                             'page_name': currentPage.name,
-                            'page_likes': currentPage.likes,
+                            'page_likes': currentPage.country_page_likes,
                             'Page New Likes': currentPage.new_like_count,
                             'Page Talking About': currentPage.talking_about_count,
                             'page_id': currentPage.id,
