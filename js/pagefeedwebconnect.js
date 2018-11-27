@@ -1,7 +1,7 @@
 
         var APP_ID = '1445370055764391'; //Facebook APP ID
         var LIMIT = 100; //Number of records to bring back at any time
-        var BASEURL = 'http://files.tableaujunkie.com/facebooksearch/' //base url of virtual directory
+        var BASEURL = 'https://alexfrancisross.github.io/FacebookWebDataConnector/' //base url of virtual directory
 
         window.fbAsyncInit = function() {
             FB.init({
